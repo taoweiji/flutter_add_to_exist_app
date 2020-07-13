@@ -29,3 +29,23 @@ subprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+
+subprojects {
+    apply plugin: 'maven'
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: uri('/Users/Wiki/Downloads/repo'))
+//                repository(url: "http://maven.foreend.thejoyrun.com/repository/jiran/") {
+//                    authentication(userName: 'admin', password: 'joyrun123')
+//                }
+            }
+        }
+    }
+    afterEvaluate {project ->
+        version packageAarVersion
+    }
+}
